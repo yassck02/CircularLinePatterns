@@ -29,15 +29,31 @@ struct VertexOut {
 
 // MARK: -
 
-vertex VertexOut vertex_shader(const device CBGradientKey *K [[ buffer(1) ]],
+float getAngle(int i, uint divisions) {
+    return (360.0 / float(divisions)) *  float(i);
+}
+
+vertex VertexOut vertex_shader(const device Pattern &P       [[ buffer(0) ]],
+                               const device CBGradientKey *K [[ buffer(1) ]],
                                const device Uniforms &U      [[ buffer(2) ]],
-                               const device Pattern &P       [[ buffer(3) ]],
                                const unsigned int i          [[ vertex_id ]])
 {
     VertexOut vert;
     
-    vert.position = float4(x, y, 0, 1);
-    vert.color = sample(K, U.gradientCount, n);
+    float angle;
+    int n = ceil(float(i) / 2.0);
+    
+    if (i % 2 == 0) {
+        angle = getAngle(n, P.divisions);
+    } else {
+        int j = (n * P.multiple) % P.divisions;
+        angle = getAngle(j, P.divisions);
+    }
+        
+    vert.position = float4(cos(angle), sin(angle), 0, 1);
+    
+    float percent = i / (P.divisions * 2.0);
+    vert.color = sample(K, U.gradientCount, percent);
 
     return vert;
 }

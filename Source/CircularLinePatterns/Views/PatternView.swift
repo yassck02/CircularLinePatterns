@@ -8,20 +8,23 @@
 
 import MetalKit
 import SwiftUI
+import CBTLogger
 
 // MARK: -
 
 class PatternMTKView: MTKView {
     
-    struct Uniforms: Codable {
+    struct Uniforms {
         var gradientCount: uint
     }
     
     // MARK: Properties
     
-    var Pattern: Pattern
+    var pattern: Pattern
     
     var gradient: CBGradient
+    
+    var percent: Float = 1.0
     
     // MARK: Variables
     
@@ -31,8 +34,8 @@ class PatternMTKView: MTKView {
     
     // MARK: Lifecycle
     
-    init(Pattern: Pattern, gradient: CBGradient) {
-        self.Pattern = Pattern
+    init(pattern: Pattern, gradient: CBGradient) {
+        self.pattern = pattern
         self.gradient = gradient
         
         super.init(frame: .zero, device: nil)
@@ -54,7 +57,7 @@ class PatternMTKView: MTKView {
         let vertexProgram = library!.makeFunction(name: "vertex_shader")
         
         let pipelineStateDescriptor = MTLRenderPipelineDescriptor()
-        pipelineStateDescriptor.vertexFunction   = vertexProgram
+        pipelineStateDescriptor.vertexFunction = vertexProgram
         pipelineStateDescriptor.fragmentFunction = fragmentProgram
         pipelineStateDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
         
@@ -64,7 +67,7 @@ class PatternMTKView: MTKView {
         do {
             pipelineState = try device!.makeRenderPipelineState(descriptor: pipelineStateDescriptor)
         } catch let error as NSError {
-            print(error);
+            Log.error(error);
         }
         
         commandQueue = device!.makeCommandQueue()
@@ -75,21 +78,21 @@ class PatternMTKView: MTKView {
     override func draw(_ rect: CGRect) {
         
         guard let commandBuffer = commandQueue.makeCommandBuffer() else {
-            print("commandQueue.makeCommandBuffer() failed"); return;
+            Log.error("commandQueue.makeCommandBuffer() failed"); return;
         }
         
         guard let renderPassDescriptor = currentRenderPassDescriptor else {
-            print("get currentRenderPassDescriptor failed"); return;
+            Log.error("get currentRenderPassDescriptor failed"); return;
         }
         
         renderPassDescriptor.depthAttachment = .none
         
         guard let drawable = currentDrawable else {
-            print("get currentDrawable failed"); return;
+            Log.error("get currentDrawable failed"); return;
         }
         
         guard let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else {
-            print("commandBuffer.makeRenderCommandEncoder(...) failed"); return;
+            Log.error("commandBuffer.makeRenderCommandEncoder(...) failed"); return;
         }
         renderEncoder.setRenderPipelineState(pipelineState)
         
@@ -97,10 +100,13 @@ class PatternMTKView: MTKView {
             gradientCount: uint(gradient.keys.count)
         )
         
+        let vertexCount = Int(Float(pattern.divisions * 2) * percent)
+        
+        renderEncoder.setVertexBytes(&pattern,       length: MemoryLayout<Pattern>.stride,                              index: 0)
         renderEncoder.setVertexBytes(&gradient.keys, length: MemoryLayout<CBGradient.Key>.stride * gradient.keys.count, index: 1)
         renderEncoder.setVertexBytes(&uniforms,      length: MemoryLayout<Uniforms>.stride,                             index: 2)
 
-        renderEncoder.drawPrimitives(type: .lineStrip, vertexStart: 0, vertexCount: Int(parameters.vertexCount), instanceCount: 1)
+        renderEncoder.drawPrimitives(type: .line, vertexStart: 0, vertexCount: vertexCount, instanceCount: 1)
         renderEncoder.endEncoding()
         
         commandBuffer.present(drawable)
@@ -113,9 +119,11 @@ class PatternMTKView: MTKView {
 struct PatternView: UIViewRepresentable {
     typealias UIViewType = PatternMTKView
     
-    @State var Pattern: Pattern
+    @Binding var pattern: Pattern
     
     @ObservedObject var gradient: CBGradient
+    
+    @Binding var percent: Float
     
     func makeCoordinator() -> PatternView.Coordinator {
         return Coordinator(self)
@@ -124,14 +132,15 @@ struct PatternView: UIViewRepresentable {
     func makeUIView(context: UIViewRepresentableContext<PatternView>) -> PatternMTKView {
         let parent = context.coordinator.parent
         return PatternMTKView(
-            Pattern: parent.Pattern,
+            pattern: parent.pattern,
             gradient: parent.gradient
         )
     }
     
     func updateUIView(_ uiView: PatternMTKView, context: UIViewRepresentableContext<PatternView>) {
-        uiView.Pattern = Pattern
+        uiView.pattern = pattern
         uiView.gradient = gradient
+        uiView.percent = percent
         uiView.setNeedsDisplay()
     }
     
@@ -149,8 +158,9 @@ struct PatternView_Previews: PreviewProvider {
     
     static var previews: some View {
         PatternView(
-            Pattern: TEST_PATRN,
-            gradient: TEST_GRAD
+            pattern: .constant(TEST_PATRN),
+            gradient: TEST_GRAD,
+            percent: .constant(1.0)
         ).previewLayout(.fixed(width: 300, height: 300))
     }
 }

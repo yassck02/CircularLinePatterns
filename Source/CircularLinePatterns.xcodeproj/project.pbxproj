@@ -16,7 +16,6 @@
 		B31ED9B72472E1F30025C235 /* Pattern.metal in Sources */ = {isa = PBXBuildFile; fileRef = B31ED9B52472E1F20025C235 /* Pattern.metal */; };
 		B31ED9B82472E1F30025C235 /* PatternView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31ED9B62472E1F20025C235 /* PatternView.swift */; };
 		B33F78A12474AEB200F78630 /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F78A02474AEB200F78630 /* PreviewData.swift */; };
-		B361B3D3247C8EFC0094E5C1 /* TextFieldStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B361B3D2247C8EFC0094E5C1 /* TextFieldStepper.swift */; };
 		B361B3D5247C8F090094E5C1 /* Pattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = B361B3D4247C8F090094E5C1 /* Pattern.swift */; };
 		B361B3E6247C8FA80094E5C1 /* CBGradientPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B361B3D8247C8FA70094E5C1 /* CBGradientPicker.swift */; };
 		B361B3E7247C8FA80094E5C1 /* CBGradient.metal in Sources */ = {isa = PBXBuildFile; fileRef = B361B3D9247C8FA70094E5C1 /* CBGradient.metal */; };
@@ -45,7 +44,6 @@
 		B31ED9B62472E1F20025C235 /* PatternView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatternView.swift; sourceTree = "<group>"; };
 		B33F789F2474AE5700F78630 /* CircularLinePatterns.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CircularLinePatterns.entitlements; sourceTree = "<group>"; };
 		B33F78A02474AEB200F78630 /* PreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewData.swift; sourceTree = "<group>"; };
-		B361B3D2247C8EFC0094E5C1 /* TextFieldStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldStepper.swift; sourceTree = "<group>"; };
 		B361B3D4247C8F090094E5C1 /* Pattern.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pattern.swift; sourceTree = "<group>"; };
 		B361B3D8247C8FA70094E5C1 /* CBGradientPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBGradientPicker.swift; sourceTree = "<group>"; };
 		B361B3D9247C8FA70094E5C1 /* CBGradient.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = CBGradient.metal; sourceTree = "<group>"; };
@@ -166,7 +164,6 @@
 				B31ED9B52472E1F20025C235 /* Pattern.metal */,
 				B31ED9B62472E1F20025C235 /* PatternView.swift */,
 				B301DBBA2472FBAC008C0D45 /* ContentView.swift */,
-				B361B3D2247C8EFC0094E5C1 /* TextFieldStepper.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -249,7 +246,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B31ED9B72472E1F30025C235 /* Pattern.metal in Sources */,
-				B361B3D3247C8EFC0094E5C1 /* TextFieldStepper.swift in Sources */,
 				B361B3ED247C8FA80094E5C1 /* CBColor.metal in Sources */,
 				B361B3E8247C8FA80094E5C1 /* CBGradient.swift in Sources */,
 				B31ED9B82472E1F30025C235 /* PatternView.swift in Sources */,
@@ -402,7 +398,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = CircularLinePatterns/ElipiticalLinePatterns.entitlements;
+				CODE_SIGN_ENTITLEMENTS = CircularLinePatterns/CircularLinePatterns.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"CircularLinePatterns/Preview Content\"";
@@ -425,7 +421,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = CircularLinePatterns/ElipiticalLinePatterns.entitlements;
+				CODE_SIGN_ENTITLEMENTS = CircularLinePatterns/CircularLinePatterns.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"CircularLinePatterns/Preview Content\"";
