@@ -112,6 +112,18 @@ class PatternMTKView: MTKView {
         commandBuffer.present(drawable)
         commandBuffer.commit()
     }
+    
+    func screenshot() -> UIImage? {
+        guard let texture = currentDrawable?.texture else {
+            return nil
+        }
+        
+        guard let cgimage = texture.toImage() else {
+            return nil
+        }
+        
+        return UIImage(cgImage: cgimage)
+    }
 }
 
 // MARK: -

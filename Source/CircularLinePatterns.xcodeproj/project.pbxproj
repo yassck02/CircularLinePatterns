@@ -29,6 +29,7 @@
 		B361B3EF247C8FA80094E5C1 /* CBColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B361B3E4247C8FA80094E5C1 /* CBColor.swift */; };
 		B361B3F0247C8FA80094E5C1 /* CBGradientSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B361B3E5247C8FA80094E5C1 /* CBGradientSlider.swift */; };
 		B383E08C247C90F700AF406F /* CBTLogger in Frameworks */ = {isa = PBXBuildFile; productRef = B383E08B247C90F700AF406F /* CBTLogger */; };
+		B3DDDDAA247D69850060A606 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DDDDA9247D69850060A606 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		B361B3E3247C8FA80094E5C1 /* CBColorWell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBColorWell.swift; sourceTree = "<group>"; };
 		B361B3E4247C8FA80094E5C1 /* CBColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBColor.swift; sourceTree = "<group>"; };
 		B361B3E5247C8FA80094E5C1 /* CBGradientSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBGradientSlider.swift; sourceTree = "<group>"; };
+		B3DDDDA9247D69850060A606 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				B33F789F2474AE5700F78630 /* CircularLinePatterns.entitlements */,
 				B31ED9A12472E16D0025C235 /* AppDelegate.swift */,
 				B31ED9A32472E16D0025C235 /* SceneDelegate.swift */,
+				B3DDDDA9247D69850060A606 /* Extensions.swift */,
 				B361B3D6247C8FA70094E5C1 /* CBColorTools */,
 				B35CD87A24732B7500B72A3B /* Models */,
 				B37A764B2472F33C00FE853D /* Views */,
@@ -252,6 +255,7 @@
 				B361B3EB247C8FA80094E5C1 /* CBWellConfig.swift in Sources */,
 				B33F78A12474AEB200F78630 /* PreviewData.swift in Sources */,
 				B361B3D5247C8F090094E5C1 /* Pattern.swift in Sources */,
+				B3DDDDAA247D69850060A606 /* Extensions.swift in Sources */,
 				B31ED9A22472E16D0025C235 /* AppDelegate.swift in Sources */,
 				B361B3EA247C8FA80094E5C1 /* CBTextSlider.swift in Sources */,
 				B31ED9A42472E16D0025C235 /* SceneDelegate.swift in Sources */,

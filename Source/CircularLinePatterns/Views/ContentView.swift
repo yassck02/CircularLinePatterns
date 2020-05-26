@@ -45,7 +45,9 @@ struct ContentView: View {
                 }) , in: 0...800)
                 CBGradientWell(value: gradient).frame(height: 50)
             }
-        }.padding()
+        }
+        .padding()
+        .accentColor(.gray)
     }
     
     func onPress_camera() {
